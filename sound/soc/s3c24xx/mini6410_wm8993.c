@@ -107,17 +107,17 @@ static int smdk64xx_hw_params(struct snd_pcm_substream *substream,
 		return ret;
 
 	/* Set WM8993 to drive MCLK from its PLLA */
-	ret = snd_soc_dai_set_clkdiv(codec_dai, WM8993_DAC_CLKSEL,
+/*	ret = snd_soc_dai_set_clkdiv(codec_dai, WM8993_DAC_CLKSEL,
 					2);
 	if (ret < 0)
 		return ret;
-
+*/
 	/* Explicitly set WM8993-DAC to source from MCLK */
-	ret = snd_soc_dai_set_clkdiv(codec_dai, WM8993_DAC_CLKSEL,
+/*	ret = snd_soc_dai_set_clkdiv(codec_dai, WM8993_DAC_CLKSEL,
 					1);
 	if (ret < 0)
 		return ret;
-
+*/
 	ret = snd_soc_dai_set_pll(codec_dai, WM8993_FLL_MCLK, 0,
 					SMDK64XX_WM8993_FREQ, pll_out);
 	if (ret < 0)
