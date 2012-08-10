@@ -1,0 +1,11 @@
+#!/bin/bash
+
+DESTDIR=/tmp/FriendlyARM/mini6410/kernel
+mkdir -p ${DESTDIR}
+
+for suffix in a70 n43; do
+	cp config_android_${suffix} .config && \
+		make &&
+		cp -vf arch/arm/boot/zImage ${DESTDIR}/azImage_${suffix} || exit 1
+done
+
