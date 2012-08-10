@@ -2,6 +2,24 @@
 *.slo
 *.lo
 *.o
+*.cmd
+*.order
+*.builtin
+.tmp*
+.missing-syscalls.d
+.version
+vmlinux
+Module.symvers
+System.map
+*.swp
+arch/arm/boot/compressed/lib1funcs.S
+arch/arm/boot/compressed/piggy.gzip
+arch/arm/kernel/asm-offsets.s
+include/config/
+include/generated/
+include/linux/version.h
+kernel/bounds.s
+usr/.initramfs_data.cpio.d
 
 # Compiled Dynamic libraries
 *.so
@@ -10,3 +28,9 @@
 *.lai
 *.la
 *.a
+
+# Cscope and ctags out file
+tags
+cscope.in.out
+cscope.out
+cscope.po.out
