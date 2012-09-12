@@ -61,7 +61,8 @@ static int s3c64xx_i2s_probe(struct platform_device *pdev,
 {
 	/* configure GPIO for i2s port */
 	
-#define printk_wei(fmt,args...) printk("WEI: %s-%s-%i\n",__FILE__,__FUNCTION__,__LINE__);printk("     ");printk(fmt,##args);
+	printk("%s\n",__FUNCTION__);
+	printk("%s --> dai->id: %d\n",dai->name,dai->id);
 
 	switch (dai->id) {
 	case 0:
@@ -88,7 +89,6 @@ static struct snd_soc_dai_ops s3c64xx_i2s_dai_ops;
 static __devinit int s3c64xx_iis_dev_probe(struct platform_device *pdev)
 {
 	
-#define printk_wei(fmt,args...) printk("WEI: %s-%s-%i\n",__FILE__,__FUNCTION__,__LINE__);printk("     ");printk(fmt,##args);
 
 	struct s3c_i2sv2_info *i2s;
 	struct snd_soc_dai *dai;

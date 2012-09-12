@@ -1140,7 +1140,7 @@ printk_wei("##Into snd_soc_instantiate_card##\n");
 
 	if (card->instantiated)
 		return;
-	printk("##1##");
+	printk("##1##\n");
 	found = 0;
 	list_for_each_entry(platform, &platform_list, list)
 		if (card->platform == platform) {
@@ -1153,7 +1153,7 @@ printk_wei("##Into snd_soc_instantiate_card##\n");
 		return;
 	}
 
-	printk("##2##");
+	printk("##2##\n");
 	ac97 = 0;
 	for (i = 0; i < card->num_links; i++) {
 		found = 0;
@@ -1172,7 +1172,7 @@ printk_wei("##Into snd_soc_instantiate_card##\n");
 			ac97 = 1;
 	}
 
-	printk("##3##");
+	printk("##3##\n");
 	for (i = 0; i < card->num_links; i++) {
 		if (!card->dai_link[i].codec_dai->ops)
 			card->dai_link[i].codec_dai->ops = &null_dai_ops;
@@ -1214,19 +1214,20 @@ printk_wei("##Into snd_soc_instantiate_card##\n");
 
 	/* Note that we do not current check for codec components */
 
-	printk("##4##");
+	printk("##4##\n");
 	dev_dbg(card->dev, "All components present, instantiating\n");
 
 	/* Found everything, bring it up */
 	card->pmdown_time = pmdown_time;
 
 	if (card->probe) {
+		printk("card->probe(pdev)\n");
 		ret = card->probe(pdev);
 		if (ret < 0)
 			return;
 	}
-
-	printk("##5##");
+	printk("card->probe is NULL\n");
+	printk("##5##\n");
 	for (i = 0; i < card->num_links; i++) {
 		struct snd_soc_dai *cpu_dai = card->dai_link[i].cpu_dai;
 		if (cpu_dai->probe) {
@@ -1248,8 +1249,11 @@ printk_wei("##Into snd_soc_instantiate_card##\n");
 		if (ret < 0)
 			goto platform_err;
 	}
+	else{
+		printk("Platform->probe is not implements\n");
+	}
 
-	printk("##6##");
+	printk("##6##\n");
 	/* DAPM stream work */
 	INIT_DELAYED_WORK(&card->delayed_work, close_delayed_work);
 #ifdef CONFIG_PM

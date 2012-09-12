@@ -96,16 +96,16 @@ static int smdk64xx_hw_params(struct snd_pcm_substream *substream,
 		return ret;
 
 	ret = snd_soc_dai_set_sysclk(cpu_dai, S3C64XX_CLKSRC_CDCLK,
-					0, SND_SOC_CLOCK_IN);
+					0, SND_SOC_CLOCK_OUT);
 	if (ret < 0)
 		return ret;
 
 	/* We use PCLK for basic ops in SoC-Slave mode */
-	ret = snd_soc_dai_set_sysclk(cpu_dai, S3C64XX_CLKSRC_PCLK,
+/*	ret = snd_soc_dai_set_sysclk(cpu_dai, S3C64XX_CLKSRC_PCLK,
 					0, SND_SOC_CLOCK_IN);
 	if (ret < 0)
 		return ret;
-
+*/
 	/* Set WM8993 to drive MCLK from its PLLA */
 /*	ret = snd_soc_dai_set_clkdiv(codec_dai, WM8993_DAC_CLKSEL,
 					2);
@@ -118,6 +118,7 @@ static int smdk64xx_hw_params(struct snd_pcm_substream *substream,
 	if (ret < 0)
 		return ret;
 */
+	ret = snd_soc_dai_set_sysclk(codec_dai,WM8993_SYSCLK_FLL,24576000,SND_SOC_CLOCK_OUT);
 	ret = snd_soc_dai_set_pll(codec_dai, WM8993_FLL_MCLK, 0,
 					SMDK64XX_WM8993_FREQ, pll_out);
 	if (ret < 0)
